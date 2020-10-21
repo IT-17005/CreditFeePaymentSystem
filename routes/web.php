@@ -13,7 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-// route
+// Route::get('/', function () {
+//     return view('frontend.index');
+// });
+
+Route::get('/','App\Http\Controllers\Frontend\PagesController@index')->name('index');
+// Route::get('/login','App\Http\Controllers\Frontend\PagesController@login')->name('login');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
